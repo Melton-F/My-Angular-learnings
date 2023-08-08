@@ -1,0 +1,42 @@
+<h2>Programming Or Coding</h2>
+
+<button (click)="onButtonClick()" (mouseover)="onButtonClick()" [disabled]="isDissabled">Show books</button> <br><br>
+
+<input type="text" (input)="inInput($event)">
+<p>{{test}}</p>
+
+<input type="text" [(ngModel)]="check">
+<h1>{{check}}</h1>
+
+<!-- <button (click)="isShowing=!isShowing">Toggle books</button>  -->
+<br>
+<br>
+<button (click)="isShowing = !isShowing">
+    <ng-container *ngIf="!isShowing">Show Books</ng-container>
+    <ng-container *ngIf="isShowing">Hide Books</ng-container>
+</button>
+
+<ul *ngIf="isShowing">
+    <li>
+        <img [src]="src" [alt]="name" width="60">
+        "{{name}}" by "{{author}}"
+    </li><br>
+    <li>
+        <img [src]="src2" [alt]="name2" width="60">
+        "{{name2}}" by "{{author2}}"
+    </li>
+</ul>
+<br><br>
+
+
+<h3>List tags are dynamically created with for loop</h3>
+<button (click)="isShowingLoop = !isShowingLoop">
+    <ng-container *ngIf="!isShowingLoop">Show Books</ng-container>
+    <ng-container *ngIf="isShowingLoop">Hide Books</ng-container>
+</button>
+
+<ul *ngIf="isShowingLoop">
+    <ng-container *ngFor="let singleBook of books; let i = index">
+        <app-book (bookEmitter)="addToCart($event)" [book]="singleBook"></app-book>
+    </ng-container>
+</ul>
